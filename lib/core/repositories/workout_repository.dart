@@ -56,4 +56,39 @@ class WorkoutRepository {
       return Workout.fromMap(workout, workoutExercises);
     }));
   }
+
+  Future<List<Exercise>> getAllExercises() async {
+    final db = await _databaseHelper.database;
+    final exercises = await db.query('exercises');
+
+    return Future.wait(exercises.map((exercise) async {
+      final muscles = await db.query(
+        'exercise_muscles',
+        where: 'exercise_id = ?',
+        whereArgs: [exercise['id']],
+      );
+
+      final musclesList = muscles
+          .map((m) => Muscles.values.firstWhere((e) => e.name == m['muscle']))
+          .toList();
+
+      return Exercise.fromMap(exercise, musclesList);
+    }));
+  }
+
+  Future<void> addExercise(Exercise exercise) async {
+    final db = await _databaseHelper.database;
+    await db.transaction((txn) async {
+      // Insert exercise
+      await txn.insert('exercises', exercise.toMap());
+
+      // Insert muscles
+      for (final muscle in exercise.musclesWorked) {
+        await txn.insert('exercise_muscles', {
+          'exercise_id': exercise.id,
+          'muscle': muscle.name,
+        });
+      }
+    });
+  }
 }
