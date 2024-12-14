@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_gains/theme/app_theme.dart';
-import 'package:get_gains/features/home/home_page.dart';
+import 'package:get_gains/features/main/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Get Gains',
       theme: AppTheme.darkTheme,
-      home: const HomePage(),
+      home: const MainScreen(),
     );
   }
 }
