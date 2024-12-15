@@ -3,7 +3,7 @@ import 'package:get_gains/features/workout/workout_screen.dart';
 import 'package:get_gains/features/exercise/exercise_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();

@@ -4,7 +4,7 @@ import 'package:get_gains/core/models/workout.dart';
 import 'package:get_gains/core/repositories/workout_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

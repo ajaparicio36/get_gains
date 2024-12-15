@@ -5,10 +5,10 @@ class EmptyStateWidget extends StatelessWidget {
   final IconData icon;
 
   const EmptyStateWidget({
-    Key? key,
+    super.key,
     required this.message,
     this.icon = Icons.inbox,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

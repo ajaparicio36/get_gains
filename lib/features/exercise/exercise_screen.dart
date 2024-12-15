@@ -4,7 +4,7 @@ import 'package:get_gains/core/repositories/workout_repository.dart';
 import 'package:get_gains/features/exercise/add_exercise_screen.dart';
 
 class ExerciseScreen extends StatefulWidget {
-  const ExerciseScreen({Key? key}) : super(key: key);
+  const ExerciseScreen({super.key});
 
   @override
   _ExerciseScreenState createState() => _ExerciseScreenState();

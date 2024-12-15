@@ -4,7 +4,7 @@ import 'package:get_gains/core/models/workout.dart';
 import 'package:get_gains/core/repositories/workout_repository.dart';
 
 class WorkoutScreen extends StatelessWidget {
-  const WorkoutScreen({Key? key}) : super(key: key);
+  const WorkoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
