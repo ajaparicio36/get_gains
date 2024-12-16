@@ -4,7 +4,7 @@ import 'package:get_gains/core/models/exercise.dart';
 class Workout {
   final String id;
   final String name;
-  final DateTime? lastPerformed;
+  final int? lastPerformed;
   final List<Exercise> exercises;
 
   Workout({
@@ -15,21 +15,29 @@ class Workout {
   }) : id = id ?? const Uuid().v4();
 
   Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'last_performed': lastPerformed?.toIso8601String(),
-    };
+    return {'id': id, 'name': name, 'last_performed': lastPerformed};
   }
 
   factory Workout.fromMap(Map<String, dynamic> map, List<Exercise> exercises) {
     return Workout(
       id: map['id'],
       name: map['name'],
-      lastPerformed: map['last_performed'] != null
-          ? DateTime.parse(map['last_performed'])
-          : null,
+      lastPerformed: map['last_performed'],
       exercises: exercises,
+    );
+  }
+
+  Workout copyWith({
+    String? id,
+    String? name,
+    int? lastPerformed,
+    List<Exercise>? exercises,
+  }) {
+    return Workout(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      lastPerformed: lastPerformed ?? this.lastPerformed,
+      exercises: exercises ?? this.exercises,
     );
   }
 }
