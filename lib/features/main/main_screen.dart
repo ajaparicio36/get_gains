@@ -1,6 +1,10 @@
+// lib/features/main/main_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:get_gains/features/workout/workout_screen.dart';
 import 'package:get_gains/features/exercise/exercise_screen.dart';
+import 'package:get_gains/features/timer/timer_screen.dart';
+import 'package:get_gains/core/widgets/floating_timer.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,12 +19,18 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = const [
     WorkoutScreen(),
     ExerciseScreen(),
+    TimerScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: Stack(
+        children: [
+          _screens[_selectedIndex],
+          const FloatingTimer(),
+        ],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) {
@@ -36,6 +46,10 @@ class _MainScreenState extends State<MainScreen> {
           NavigationDestination(
             icon: Icon(Icons.sports_gymnastics),
             label: 'Exercises',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.timer),
+            label: 'Timer',
           ),
         ],
       ),

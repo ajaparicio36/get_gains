@@ -19,6 +19,9 @@ dependencies:
   # Utilities
   intl: ^0.18.1
   uuid: ^4.2.1
+  audioplayers: ^5.2.1
+  flutter_local_notifications: ^18.0.1
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
