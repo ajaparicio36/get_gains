@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get_gains/core/models/workout.dart';
 import 'package:get_gains/core/repositories/workout_repository.dart';
+import 'package:get_gains/features/workout/add_workout_screen.dart';
+import 'package:get_gains/features/workout/workout_details_screen.dart';
 
-class WorkoutScreen extends StatelessWidget {
+class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
 
+  @override
+  _WorkoutScreenState createState() => _WorkoutScreenState();
+}
+
+class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +68,17 @@ class WorkoutScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   FilledButton.icon(
-                    onPressed: () {
-                      // TODO: Navigate to add workout page
+                    onPressed: () async {
+                      final result = await Navigator.push<bool>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddWorkoutScreen(),
+                        ),
+                      );
+
+                      if (result == true) {
+                        setState(() {}); // Refresh the workout list
+                      }
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('Add Workout'),
@@ -88,7 +104,7 @@ class WorkoutScreen extends StatelessWidget {
                   ),
                   subtitle: workout.lastPerformed != null
                       ? Text(
-                          'Last performed: ${DateFormat('MMM d, y').format(workout.lastPerformed!)}',
+                          'Last performed: ${DateFormat('MMM d, y').format(DateTime.fromMillisecondsSinceEpoch(workout.lastPerformed!))}',
                           style: const TextStyle(color: Colors.grey),
                         )
                       : const Text(
@@ -96,8 +112,16 @@ class WorkoutScreen extends StatelessWidget {
                           style: TextStyle(color: Colors.grey),
                         ),
                   trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    // TODO: Navigate to workout details page
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WorkoutDetailsScreen(
+                          workoutId: workout.id,
+                        ),
+                      ),
+                    );
+                    setState(() {});
                   },
                 ),
               );
@@ -106,8 +130,17 @@ class WorkoutScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: Navigate to add workout page
+        onPressed: () async {
+          final result = await Navigator.push<bool>(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddWorkoutScreen(),
+            ),
+          );
+
+          if (result == true) {
+            setState(() {}); // Refresh the workout list
+          }
         },
         child: const Icon(Icons.add),
       ),
