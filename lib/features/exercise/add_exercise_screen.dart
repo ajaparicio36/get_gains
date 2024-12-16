@@ -40,13 +40,10 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
       final exercise = Exercise(
         name: _nameController.text.trim(),
         musclesWorked: _selectedMuscles.toList(),
-        reps: 0, // Default values as these will be set when adding to workout
-        weight: 0,
-        sets: 0,
-        workoutId: '', // This will be set when adding to workout
       );
 
       await WorkoutRepository().addExercise(exercise);
+
       if (mounted) {
         Navigator.pop(context, true);
       }

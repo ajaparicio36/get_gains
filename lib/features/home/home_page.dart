@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                   ),
                   subtitle: workout.lastPerformed != null
                       ? Text(
-                          'Last performed: ${DateFormat('MMM d, y').format(workout.lastPerformed!)}',
+                          'Last performed: ${DateFormat('MMM d, y').format(DateTime.fromMillisecondsSinceEpoch(workout.lastPerformed!))}',
                           style: const TextStyle(color: Colors.grey),
                         )
                       : const Text(
