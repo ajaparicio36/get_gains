@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_gains/core/models/exercise.dart';
 import 'package:get_gains/core/repositories/workout_repository.dart';
 import 'package:get_gains/features/exercise/add_exercise_screen.dart';
+import 'package:get_gains/features/exercise/exercise_details_screen.dart';
 
 class ExerciseScreen extends StatefulWidget {
   const ExerciseScreen({super.key});
@@ -106,7 +107,16 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
-                    // TODO: Navigate to exercise details page
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ExerciseDetailsScreen(exercise: exercise),
+                      ),
+                    ).then((_) {
+                      // Refresh the list when returning from details screen
+                      setState(() {});
+                    });
                   },
                 ),
               );
